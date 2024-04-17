@@ -1,9 +1,17 @@
 package org.mvp.simpleboard.question;
 
 import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+import org.mvp.simpleboard.answer.Answer;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Question {
     @Id
@@ -17,5 +25,6 @@ public class Question {
     private String content;
     private LocalDateTime createDate;
 
-
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private List<Answer> answerList;
 }
