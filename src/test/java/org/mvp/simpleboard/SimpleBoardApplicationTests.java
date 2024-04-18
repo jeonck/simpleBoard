@@ -41,6 +41,9 @@ class SimpleBoardApplicationTests {
         List<Question> all = this.questionRepository.findAll();
         assertEquals(2, all.size());
 
+        Question q = all.get(0);
+        assertEquals("sb가 무엇인가요?", q.getSubject());
+
     }
 
     @Test
