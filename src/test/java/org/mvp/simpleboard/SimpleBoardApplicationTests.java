@@ -1,6 +1,8 @@
 package org.mvp.simpleboard;
 
 import org.junit.jupiter.api.Test;
+import org.mvp.simpleboard.answer.Answer;
+import org.mvp.simpleboard.answer.AnswerRepository;
 import org.mvp.simpleboard.question.Question;
 import org.mvp.simpleboard.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ class SimpleBoardApplicationTests {
 
     @Autowired
     private QuestionRepository questionRepository;
+//
+//    @Autowired
+//    private AnswerRepository answerRepository;
 
     @Test
     void testJpa() {
@@ -33,34 +38,8 @@ class SimpleBoardApplicationTests {
         q2.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q2);
 
-//        List<Question> all = this.questionRepository.findAll();
-//        assertEquals(2, all.size());
-
-//        Optional<Question> oq = this.questionRepository.findById(1);
-//        if(oq.isPresent()) {
-//            Question q = oq.get();
-//            assertEquals("sb가 무엇인가요?", q.getSubject());
-//        }
-//        Question q = this.questionRepository.findBySubject("sb가 무엇인가요?");
-//        assertEquals(1, q.getId());
-
-//        Question q = this.questionRepository.findBySubjectAndContent("sb가 무엇인가요?", "sb에 대해 알고 싶어요");
-//        assertEquals(1, q.getId());
-
-//        List<Question> qList = this.questionRepository.findBySubjectLike("sb%");
-//        Question q = qList.get(0);
-//        assertEquals("sb가 무엇인가요?", q.getSubject());
-//        Optional<Question> oq = this.questionRepository.findById(1);
-//        assertTrue(oq.isPresent());
-//        Question q = oq.get();
-//        q.setSubject("수정된 제목");
-//        this.questionRepository.save(q);
-        assertEquals(2, this.questionRepository.count());
-        Optional<Question> oq = this.questionRepository.findById(1);
-        assertTrue(oq.isPresent());
-        Question q = oq.get();
-        this.questionRepository.delete(q);
-        assertEquals(1, this.questionRepository.count());
+        List<Question> all = this.questionRepository.findAll();
+        assertEquals(2, all.size());
 
     }
 
