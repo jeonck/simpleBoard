@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,7 +21,7 @@ class SimpleBoardApplicationTests {
     @Test
     void testJpa() {
         Question q1 = new Question();
-        q1.setSubject("sb가 무었인가요?");
+        q1.setSubject("sb가 무엇인가요?");
         q1.setContent("sb에 대해 알고 싶어요");
         q1.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q1);
@@ -31,8 +32,16 @@ class SimpleBoardApplicationTests {
         q2.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q2);
 
-        List<Question> all = this.questionRepository.findAll();
-        assertEquals(2, all.size());
+//        List<Question> all = this.questionRepository.findAll();
+//        assertEquals(2, all.size());
+
+//        Optional<Question> oq = this.questionRepository.findById(1);
+//        if(oq.isPresent()) {
+//            Question q = oq.get();
+//            assertEquals("sb가 무엇인가요?", q.getSubject());
+//        }
+        Question q = this.questionRepository.findBySubject("sb가 무엇인가요?");
+        assertEquals(1, q.getId());
 
     }
 
