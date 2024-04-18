@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class SimpleBoardApplicationTests {
@@ -45,9 +46,15 @@ class SimpleBoardApplicationTests {
 
 //        Question q = this.questionRepository.findBySubjectAndContent("sb가 무엇인가요?", "sb에 대해 알고 싶어요");
 //        assertEquals(1, q.getId());
-        List<Question> qList = this.questionRepository.findBySubjectLike("sb%");
-        Question q = qList.get(0);
-        assertEquals("sb가 무엇인가요?", q.getSubject());
+
+//        List<Question> qList = this.questionRepository.findBySubjectLike("sb%");
+//        Question q = qList.get(0);
+//        assertEquals("sb가 무엇인가요?", q.getSubject());
+        Optional<Question> oq = this.questionRepository.findById(1);
+        assertTrue(oq.isPresent());
+        Question q = oq.get();
+        q.setSubject("수정된 제목");
+        this.questionRepository.save(q);
 
     }
 
