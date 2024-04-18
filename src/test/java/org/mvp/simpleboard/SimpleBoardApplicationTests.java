@@ -40,8 +40,14 @@ class SimpleBoardApplicationTests {
 //            Question q = oq.get();
 //            assertEquals("sb가 무엇인가요?", q.getSubject());
 //        }
-        Question q = this.questionRepository.findBySubject("sb가 무엇인가요?");
-        assertEquals(1, q.getId());
+//        Question q = this.questionRepository.findBySubject("sb가 무엇인가요?");
+//        assertEquals(1, q.getId());
+
+//        Question q = this.questionRepository.findBySubjectAndContent("sb가 무엇인가요?", "sb에 대해 알고 싶어요");
+//        assertEquals(1, q.getId());
+        List<Question> qList = this.questionRepository.findBySubjectLike("sb%");
+        Question q = qList.get(0);
+        assertEquals("sb가 무엇인가요?", q.getSubject());
 
     }
 
