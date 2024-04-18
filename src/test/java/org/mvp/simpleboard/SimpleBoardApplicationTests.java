@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class SimpleBoardApplicationTests {
@@ -27,6 +30,9 @@ class SimpleBoardApplicationTests {
         q2.setContent("id는 자동 생성인가요?");
         q2.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q2);
+
+        List<Question> all = this.questionRepository.findAll();
+        assertEquals(2, all.size());
 
     }
 
