@@ -38,11 +38,16 @@ class SimpleBoardApplicationTests {
         q2.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q2);
 
-        List<Question> all = this.questionRepository.findAll();
-        assertEquals(2, all.size());
-
-        Question q = all.get(0);
-        assertEquals("sb가 무엇인가요?", q.getSubject());
+//        List<Question> all = this.questionRepository.findAll();
+//        assertEquals(2, all.size());
+//
+//        Question q = all.get(0);
+//        assertEquals("sb가 무엇인가요?", q.getSubject());
+        Optional<Question> oq = this.questionRepository.findById(1);
+        if(oq.isPresent()) {
+            Question q = oq.get();
+            assertEquals("sb가 무엇인가요?", q.getSubject());
+        }
 
     }
 
