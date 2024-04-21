@@ -21,8 +21,8 @@ class SimpleBoardApplicationTests {
     @Autowired
     private QuestionRepository questionRepository;
 //
-//    @Autowired
-//    private AnswerRepository answerRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     @Test
     void testJpa() {
@@ -38,17 +38,15 @@ class SimpleBoardApplicationTests {
         q2.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q2);
 
-//        List<Question> all = this.questionRepository.findAll();
-//        assertEquals(2, all.size());
-//
-//        Question q = all.get(0);
-//        assertEquals("sb가 무엇인가요?", q.getSubject());
-        Optional<Question> oq = this.questionRepository.findById(1);
-        if(oq.isPresent()) {
-            Question q = oq.get();
-            assertEquals("sb가 무엇인가요?", q.getSubject());
-        }
+        Optional<Question> oq = this.questionRepository.findById(2);
+        assertTrue(oq.isPresent());
+        Question q = oq.get();
 
+        Answer a = new Answer();
+        a.setContent("네 자동으로 생성됩니다.");
+        a.setQuestion(q);
+        a.setCreateDate(LocalDateTime.now());
+        this.answerRepository.save(a);
     }
 
     @Test
