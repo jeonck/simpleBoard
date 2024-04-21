@@ -47,6 +47,11 @@ class SimpleBoardApplicationTests {
         a.setQuestion(q);
         a.setCreateDate(LocalDateTime.now());
         this.answerRepository.save(a);
+
+//        Optional<Answer> oa = this.answerRepository.findById(1);
+//        assertTrue(oa.isPresent());
+//        Answer a = oa.get();
+//        assertEquals(2, a.getQuestion().getId());
     }
 
     @Test
